@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function getLastMod(){
+	var myFrm = document.getElementById('myIframe');
+	var lastModif = new Date(myFrm.contentWindow.document.lastModified);
+	document.getElementById('LastModified').innerHTML = "Last updated: " + lastModif.toLocaleString();
+}
+</script>
+<body>
+<br>
+<br>
+GRASSLAND CR23X
+<br>
+<span id="LastModified"></span>
+<iframe id="myIframe" onload="getLastMod()" src="figures_completedata_7days_CR23X/RECORD.jpg" style="display:none;">
+</iframe>
+
+<br>
+<br>
+<img src="figures_completedata_7days_CR23X/RECORD.jpg">
+<img src="figures_completedata_7days_CR23X/Year.jpg">
+<img src="figures_completedata_7days_CR23X/Julian_Day.jpg">
+<img src="figures_completedata_7days_CR23X/Time_Hour_Minute.jpg">
+<img src="figures_completedata_7days_CR23X/Battery_voltage_(Volt).jpg">
+<img src="figures_completedata_7days_CR23X/Panel_T_[C].jpg">
+<img src="figures_completedata_7days_CR23X/CS616_1_Period.jpg">
+<img src="figures_completedata_7days_CR23X/CS616_2_Period.jpg">
+<img src="figures_completedata_7days_CR23X/CS616_20cm_Soil_Humidity_[m3_m-3].jpg">
+<img src="figures_completedata_7days_CR23X/CS616_10cm_Soil_Humidity_[m3_m-3].jpg">
+<img src="figures_completedata_7days_CR23X/Prec_[mm].jpg">
+<img src="figures_completedata_7days_CR23X/Soil_Heat_Flux_5_cm_[W_m-2].jpg">
+<img src="figures_completedata_7days_CR23X/Soil_Thermal_Conductivity_[W_m-1_K-1].jpg">
+<img src="figures_completedata_7days_CR23X/Soil_Thermal_Diffusivity_[mm2_s-1].jpg">
+<img src="figures_completedata_7days_CR23X/Rs_R0_Hukseflux.jpg">
+<img src="figures_completedata_7days_CR23X/Hukseflux_STP01_Tsoil_2_cm_[C].jpg">
+<img src="figures_completedata_7days_CR23X/Hukseflux_STP01_Tsoil_5_cm_[C].jpg">
+<img src="figures_completedata_7days_CR23X/Hukseflux_STP01_Tsoil_10_cm_[C].jpg">
+<img src="figures_completedata_7days_CR23X/Hukseflux_STP01_Tsoil_20_cm_[C].jpg">
+<img src="figures_completedata_7days_CR23X/Hukseflux_STP01_Tsoil_50_cm_[C].jpg">
+<br>
+<br>
+Made By JWMP
+</body>
+</html>

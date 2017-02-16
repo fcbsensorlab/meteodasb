@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function getLastMod(){
+	var myFrm = document.getElementById('myIframe');
+	var lastModif = new Date(myFrm.contentWindow.document.lastModified);
+	document.getElementById('LastModified').innerHTML = "Last updated: " + lastModif.toLocaleString();
+}
+</script>
+<body>
+<br>
+<br>
+GRASSLAND PHENOLOGY
+<br>
+<span id="LastModified"></span>
+<iframe id="myIframe" onload="getLastMod()" src="Pheno/MBG_last_day.jpg" style="display:none;">
+</iframe>
+
+<br>
+<br>
+<img src="Pheno/MBG_last_day.jpg">
+<br>
+<br>
+Made By JWMP and MC
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function getLastMod(){
+	var myFrm = document.getElementById('myIframe');
+	var lastModif = new Date(myFrm.contentWindow.document.lastModified);
+	document.getElementById('LastModified').innerHTML = "Last updated: " + lastModif.toLocaleString();
+}
+</script>
+<body>
+<br>
+<br>
+PEATLAND EDDY
+<br>
+<span id="LastModified"></span>
+<iframe id="myIframe" onload="getLastMod()" src="figures_eddy_7days/CO2_all.jpg" style="display:none;">
+</iframe>
+
+<br>
+<br>
+<img src="figures_eddy_7days/CO2_all.jpg">
+<img src="figures_eddy_7days/CO2_flag_1.jpg">
+<img src="figures_eddy_7days/CO2_flag_2.jpg">
+
+<img src="figures_eddy_7days/H2O_all.jpg">
+<img src="figures_eddy_7days/H2O_flag_1.jpg">
+<img src="figures_eddy_7days/H2O_flag_2.jpg">
+
+<br>
+<br>
+Made By JWMP
+</body>
+</html>

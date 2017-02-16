@@ -1,0 +1,127 @@
+
+R version 3.3.2 (2016-10-31) -- "Sincere Pumpkin Patch"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-pc-linux-gnu (64-bit)
+
+R è un software libero ed è rilasciato SENZA ALCUNA GARANZIA.
+Siamo ben lieti se potrai redistribuirlo, ma sotto certe condizioni.
+Scrivi 'license()' o 'licence()' per dettagli su come distribuirlo.
+
+R è un progetto di collaborazione con molti contributi esterni.
+Scrivi 'contributors()' per maggiori informazioni e 'citation()'
+per sapere come citare R o i pacchetti di R nelle pubblicazioni.
+
+Scrivi 'demo()' per una dimostrazione, 'help()' per la guida in linea, o
+'help.start()' per l'help navigabile con browser HTML.
+Scrivi 'q()' per uscire da R.
+
+> Sys.time()
+[1] "2017-02-16 06:54:16 CET"
+> year<-as.numeric(format(Sys.time(), "%Y"))
+> 
+> full_output<-read.csv(paste("/mnt/forests/_DatA/dati_torri/Peatland_Viote/",year,"_peatland/output_eddypro/Combined_data.csv",sep=""),header=T,as.is=T)
+> 
+> if(nrow(full_output)>0){
++ full_output[full_output==-9999]<-NA}
+> 
+> if(ncol(full_output)==177){
++   full_output<-full_output[2:ncol(full_output)]
++ }
+> 
+> 
+> date<-Sys.Date()-1
+> date<-format(date,"%Y%m%d")
+> date_now<-Sys.Date()
+> date_now<-format(date_now,"%Y%m%d")
+> 
+> name_new_folder<-paste("SCANEMONE_",date,"_0000-",date_now,"_0000",sep="")
+> setwd(paste("/mnt/forests/_DatA/dati_torri/Peatland_Viote/",year,"_peatland/output_eddypro/",name_new_folder,"/",sep=""))
+> 
+> 
+> filename<-list.files(pattern="full_output")
+> 
+> 
+> new_output<-read.csv(filename,header=T,skip=1,as.is=T)
+> new_output<-new_output[-1,]
+> new_output[new_output=="-9999.0"]<-NA
+> names(full_output)=names(new_output)
+> new_full<-rbind(full_output,new_output)
+> 
+> 
+> 
+> 
+> #here save new full
+> 
+> write.csv(new_full,paste("/mnt/forests/_DatA/dati_torri/Peatland_Viote/",year,"_peatland/output_eddypro/Combined_data.csv",sep=""))
+> 
+> # new_full<-new_full[-1,]
+> 
+> total_rows<-nrow(new_full)
+> start<-total_rows-(7*48) # to go back one week in time
+> if(start<0){
++   start=1
++ }
+> 
+> 
+> 
+> new_full$date_time<-paste(new_full$date ,new_full$time)
+> new_full$date <- as.POSIXct(strptime(new_full$date_time[1:nrow(new_full)],format = "%Y-%m-%d %H:%M"))
+> 
+> 
+> 
+> 
+> 
+> #make subset
+> 
+> short_set<-new_full[start:total_rows,]
+> 
+> 
+> setwd("/mnt/forests/Data/Eddy_sites_data/MonteBondone_Peatland_data/Final_MBP_data/EDDY_Final_MBP_data/EP_elab_MBP_graph/figures_eddy_7days/")
+> 
+> #plotting
+> 
+> #CO2
+> jpeg("CO2_all.jpg")
+> plot(short_set$date,short_set$co2_flux,main="CO2_all")
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("CO2_flag_2.jpg")
+> short_set$co2_flux[which(short_set$qc_co2_flux>1)]<-NA
+> plot(short_set$date,short_set$co2_flux,main="CO2_flag>1")
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("CO2_flag_1.jpg")
+> short_set$co2_flux[which(short_set$qc_co2_flux>0)]<-NA
+> plot(short_set$date,short_set$co2_flux,main="CO2_flag=0")
+> dev.off()
+null device 
+          1 
+> 
+> #H2O
+> jpeg("H2O_all.jpg")
+> plot(short_set$date,short_set$h2o_flux,main="H2O_all")
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("H2O_flag_2.jpg")
+> short_set$h2o_flux[which(short_set$qc_h2o_flux>1)]<-NA
+> plot(short_set$date,short_set$h2o_flux,main="H2O_flag>1")
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("H2O_flag_1.jpg")
+> short_set$h2o_flux[which(short_set$qc_h2o_flux>0)]<-NA
+> plot(short_set$date,short_set$h2o_flux,main="H2O_flag=0")
+> dev.off()
+null device 
+          1 
+> 
+> proc.time()
+   user  system elapsed 
+  2.188   0.076   2.368 

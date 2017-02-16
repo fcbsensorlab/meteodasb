@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function getLastMod(){
+	var myFrm = document.getElementById('myIframe');
+	var lastModif = new Date(myFrm.contentWindow.document.lastModified);
+	document.getElementById('LastModified').innerHTML = "Last updated: " + lastModif.toLocaleString();
+}
+</script>
+<body>
+<br>
+<br>
+LAVARONE CR3000
+<br>
+<span id="LastModified"></span>
+<iframe id="myIframe" onload="getLastMod()" src="figures_completedata_7days_CR3000/RECORD.jpg" style="display:none;">
+</iframe>
+<br>
+<img src="figures_completedata_7days_CR3000/TIMESTAMP.jpg">
+<img src="figures_completedata_7days_CR3000/RECORD.jpg">
+<img src="figures_completedata_7days_CR3000/batt_volt_Min.jpg">
+<img src="figures_completedata_7days_CR3000/PTemp_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/UP_530_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/UP_570_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/UP_680_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/UP_830_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/DOWN_530_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/DOWN_570_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/DOWN_680_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/DOWN_830_LAV_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/PPFDg_BF3H_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/PPFDd_BF3H_Avg.jpg">
+<img src="figures_completedata_7days_CR3000/SunStat_BF3H_Tot.jpg">
+<br>
+<br>
+<br>
+Made By JWMP
+</body>
+</html>
