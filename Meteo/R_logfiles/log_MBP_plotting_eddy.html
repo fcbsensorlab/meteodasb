@@ -16,7 +16,7 @@ Scrivi 'demo()' per una dimostrazione, 'help()' per la guida in linea, o
 Scrivi 'q()' per uscire da R.
 
 > Sys.time()
-[1] "2018-01-17 15:54:55 CET"
+[1] "2018-01-17 15:58:16 CET"
 > year<-as.numeric(format(Sys.time(), "%Y"))
 > 
 > full_output<-read.csv(paste("/mnt/forests/_DatA/dati_torri/Peatland_Viote/",year,"_peatland/output_eddypro/Combined_data.csv",sep=""),header=T,as.is=T)
@@ -83,6 +83,6 @@ Scrivi 'q()' per uscire da R.
 > #CO2
 > jpeg("CO2_all.jpg")
 > plot(short_set$date,short_set$co2_flux,main="CO2_all",xaxt="n")
-> axis(1,short_set$date,format(short_set$date_now,”%d/%m”))
-Errore: unexpected input in "axis(1,short_set$date,format(short_set$date_now,�"
+> axis(1,short_set$date,format(short_set$date,”%d/%m”))
+Errore: unexpected input in "axis(1,short_set$date,format(short_set$date,�"
 Esecuzione interrotta
