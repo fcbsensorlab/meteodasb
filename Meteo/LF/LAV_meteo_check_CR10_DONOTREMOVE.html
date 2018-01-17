@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function getLastMod(){
+	var myFrm = document.getElementById('myIframe');
+	var lastModif = new Date(myFrm.contentWindow.document.lastModified);
+	document.getElementById('LastModified').innerHTML = "Last updated: " + lastModif.toLocaleString();
+}
+</script>
+<body>
+<br>
+<br>
+LAVARONE CR10
+<br>
+<span id="LastModified"></span>
+<iframe id="myIframe" onload="getLastMod()" src="figures_completedata_7days_CR23X/Year.jpg" style="display:none;">
+</iframe>
+<br>
+<br>
+ <b>16/05/2016: NOTE SOME SENSORS HAVE SOMETIMES A STRANGE VALUE.  A FILTER [0:1] IS USED, THE REST IS CODED "NA", HENCE THE RED LINES. [JWMP] </b>
+<br>
+<img src="figures_completedata_7days_CR10_TDR/RECORD.jpg">
+<img src="figures_completedata_7days_CR10_TDR/Time_Hourminute.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_1_10cm.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_1_20cm.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_1_35cm.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_1_50cm.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_2_10cm.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_2_20cm.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_2_35cm.jpg">
+<img src="figures_completedata_7days_CR10_TDR/AVG_WC_2_50cm.jpg">
+<br>
+<br>
+<br>
+Made By JWMP
+</body>
+</html>
