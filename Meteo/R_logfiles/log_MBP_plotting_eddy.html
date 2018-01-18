@@ -16,7 +16,7 @@ Scrivi 'demo()' per una dimostrazione, 'help()' per la guida in linea, o
 Scrivi 'q()' per uscire da R.
 
 > Sys.time()
-[1] "2018-01-18 06:54:34 CET"
+[1] "2018-01-18 09:06:12 CET"
 > year<-as.numeric(format(Sys.time(), "%Y"))
 > 
 > full_output<-read.csv(paste("/mnt/forests/_DatA/dati_torri/Peatland_Viote/",year,"_peatland/output_eddypro/Combined_data.csv",sep=""),header=T,as.is=T)
@@ -83,6 +83,51 @@ Scrivi 'q()' per uscire da R.
 > #CO2
 > jpeg("CO2_all.jpg")
 > plot(short_set$date,short_set$co2_flux,main="CO2_all",xaxt="n")
-> axis(1,short_set$date,format(short_set$date,”%d/%m”))
-Errore: unexpected input in "axis(1,short_set$date,format(short_set$date,�"
-Esecuzione interrotta
+> axis(1,short_set$date,format(short_set$date,"%d/%m"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("CO2_flag_2.jpg")
+> short_set$co2_flux[which(short_set$qc_co2_flux>1)]<-NA
+> plot(short_set$date,short_set$co2_flux,main="CO2_flag>1",xaxt="n")
+> axis(1,short_set$date,format(short_set$date,"%d/%m"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("CO2_flag_1.jpg")
+> short_set$co2_flux[which(short_set$qc_co2_flux>0)]<-NA
+> plot(short_set$date,short_set$co2_flux,main="CO2_flag=0",xaxt="n")
+> axis(1,short_set$date,format(short_set$date,"%d/%m"))
+> dev.off()
+null device 
+          1 
+> 
+> #H2O
+> jpeg("H2O_all.jpg")
+> plot(short_set$date,short_set$h2o_flux,main="H2O_all",xaxt="n")
+> axis(1,short_set$date,format(short_set$date,"%d/%m"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("H2O_flag_2.jpg")
+> short_set$h2o_flux[which(short_set$qc_h2o_flux>1)]<-NA
+> plot(short_set$date,short_set$h2o_flux,main="H2O_flag>1",xaxt="n")
+> axis(1,short_set$date,format(short_set$date,"%d/%m"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("H2O_flag_1.jpg")
+> short_set$h2o_flux[which(short_set$qc_h2o_flux>0)]<-NA
+> plot(short_set$date,short_set$h2o_flux,main="H2O_flag=0",xaxt="n")
+> axis(1,short_set$date,format(short_set$date,"%d/%m"))
+> dev.off()
+null device 
+          1 
+> 
+> proc.time()
+   user  system elapsed 
+  0.860   0.060   1.333 
