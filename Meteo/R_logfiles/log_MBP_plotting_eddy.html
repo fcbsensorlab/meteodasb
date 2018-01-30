@@ -16,7 +16,7 @@ Scrivi 'demo()' per una dimostrazione, 'help()' per la guida in linea, o
 Scrivi 'q()' per uscire da R.
 
 > Sys.time()
-[1] "2018-01-29 06:54:02 CET"
+[1] "2018-01-30 06:54:21 CET"
 > year<-as.numeric(format(Sys.time(), "%Y"))
 > 
 > full_output<-read.csv(paste("/mnt/forests/_DatA/dati_torri/Peatland_Viote/",year,"_peatland/output_eddypro/Combined_data.csv",sep=""),header=T,as.is=T)
@@ -130,4 +130,4 @@ null device
 > 
 > proc.time()
    user  system elapsed 
-  1.236   0.052   1.615 
+  1.072   0.048   1.443 
