@@ -16,7 +16,7 @@ Scrivi 'demo()' per una dimostrazione, 'help()' per la guida in linea, o
 Scrivi 'q()' per uscire da R.
 
 > Sys.time()
-[1] "2018-02-01 13:11:04 CET"
+[1] "2018-02-02 07:11:53 CET"
 > year<-as.numeric(format(Sys.time(), "%Y"))
 > 
 > full_output<-read.csv(paste("/mnt/forests/Data/Eddy_sites_data/MonteBondone_Grassland_data/Final_MBG_data/EDDY_Final_MBG_data/",year,"_EddyPro_PROCESSING/MBG_Combined_data.csv",sep=""),header=T,as.is=T)
@@ -36,6 +36,98 @@ Scrivi 'q()' per uscire da R.
 > 
 > name_new_folder<-paste("SCANEMONE_",date,"_0000-",date_now,"_0000",sep="")
 > setwd(paste("/mnt/forests/Data/Eddy_sites_data/MonteBondone_Grassland_data/Final_MBG_data/EDDY_Final_MBG_data/",year,"_EddyPro_PROCESSING/",name_new_folder,"/",sep=""))
-Error in setwd(paste("/mnt/forests/Data/Eddy_sites_data/MonteBondone_Grassland_data/Final_MBG_data/EDDY_Final_MBG_data/",  : 
-  non posso cambiare la directory di lavoro
-Esecuzione interrotta
+> 
+> 
+> filename<-list.files(pattern="full_output")
+> 
+> 
+> new_output<-read.csv(filename,header=T,skip=1,as.is=T)
+> new_output<-new_output[-1,]
+> new_output[new_output=="-9999.0"]<-NA
+> names(full_output)=names(new_output)
+> new_full<-rbind(full_output,new_output)
+> 
+> 
+> 
+> 
+> #here save new full
+> 
+> write.csv(new_full,paste("/mnt/forests/Data/Eddy_sites_data/MonteBondone_Grassland_data/Final_MBG_data/EDDY_Final_MBG_data/",year,"_EddyPro_PROCESSING/MBG_Combined_data.csv",sep=""))
+> 
+> # new_full<-new_full[-1,]
+> 
+> total_rows<-nrow(new_full)
+> start<-total_rows-(7*48) # to go back one week in time
+> if(start<0){
++   start=1
++ }
+> 
+> 
+> 
+> new_full$date_time<-paste(new_full$date ,new_full$time)
+> new_full$date <- as.POSIXct(strptime(new_full$date_time[1:nrow(new_full)],format = "%Y-%m-%d %H:%M"))
+> 
+> 
+> 
+> 
+> 
+> #make subset
+> 
+> short_set<-new_full[start:total_rows,]
+> 
+> 
+> setwd("/mnt/forests/Data/Eddy_sites_data/MonteBondone_Grassland_data/Final_MBG_data/EDDY_Final_MBG_data/EP_elab_MBG_graph/figures_eddy_7days/")
+> 
+> #plotting
+> 
+> #CO2
+> jpeg("CO2_all.jpg")
+> plot(short_set$date,short_set$co2_flux,main="CO2_all",xaxt="n")
+> axis(1,format(as.POSIXct(as.Date(short_set$date),tz="GMT"),"%d/%m"),at=as.POSIXct(as.Date(short_set$date),tz="GMT"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("CO2_flag_2.jpg")
+> short_set$co2_flux[which(short_set$qc_co2_flux>1)]<-NA
+> plot(short_set$date,short_set$co2_flux,main="CO2_flag>1",xaxt="n")
+> axis(1,format(as.POSIXct(as.Date(short_set$date),tz="GMT"),"%d/%m"),at=as.POSIXct(as.Date(short_set$date),tz="GMT"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("CO2_flag_1.jpg")
+> short_set$co2_flux[which(short_set$qc_co2_flux>0)]<-NA
+> plot(short_set$date,short_set$co2_flux,main="CO2_flag=0",xaxt="n")
+> axis(1,format(as.POSIXct(as.Date(short_set$date),tz="GMT"),"%d/%m"),at=as.POSIXct(as.Date(short_set$date),tz="GMT"))
+> dev.off()
+null device 
+          1 
+> 
+> #H2O
+> jpeg("H2O_all.jpg")
+> plot(short_set$date,short_set$h2o_flux,main="H2O_all",xaxt="n")
+> axis(1,format(as.POSIXct(as.Date(short_set$date),tz="GMT"),"%d/%m"),at=as.POSIXct(as.Date(short_set$date),tz="GMT"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("H2O_flag_2.jpg")
+> short_set$h2o_flux[which(short_set$qc_h2o_flux>1)]<-NA
+> plot(short_set$date,short_set$h2o_flux,main="H2O_flag>1",xaxt="n")
+> axis(1,format(as.POSIXct(as.Date(short_set$date),tz="GMT"),"%d/%m"),at=as.POSIXct(as.Date(short_set$date),tz="GMT"))
+> dev.off()
+null device 
+          1 
+> 
+> jpeg("H2O_flag_1.jpg")
+> short_set$h2o_flux[which(short_set$qc_h2o_flux>0)]<-NA
+> plot(short_set$date,short_set$h2o_flux,main="H2O_flag=0",xaxt="n")
+> axis(1,format(as.POSIXct(as.Date(short_set$date),tz="GMT"),"%d/%m"),at=as.POSIXct(as.Date(short_set$date),tz="GMT"))
+> dev.off()
+null device 
+          1 
+> 
+> proc.time()
+   user  system elapsed 
+  0.952   0.072   1.224 
